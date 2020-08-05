@@ -73,6 +73,8 @@ export class AddProjectComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       year: new FormControl(this.currentYear, [Validators.required]),
       semester: new FormControl("", [Validators.required]),
+      doctype: new FormControl("", [Validators.required]),
+      course: new FormControl("", [Validators.required]),
     });
     this.seleccionarForm = new FormGroup({
         usuarios: new FormArray([], [])

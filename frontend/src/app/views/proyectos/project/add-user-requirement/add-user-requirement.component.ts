@@ -18,6 +18,7 @@ export class AddUserRequirementComponent implements OnInit {
   usuarios: any;
   edit = false;
   increments: any = [];
+
   constructor(
     public dialogRef: MatDialogRef<AddUserRequirementComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

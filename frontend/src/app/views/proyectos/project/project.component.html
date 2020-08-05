@@ -2,7 +2,10 @@
 	<h1>Proyecto </h1>
 	<ul>
 		<li>{{ proyecto?.name }}</li>
-	</ul>
+    </ul>
+    <div style="margin-left: auto; margin-right: 5px;">
+        <b>{{ (proyecto?.doctype==1)?'Simplificado':'Completo' }}</b>
+    </div>
 </div>
 <div class="module-loader" *ngIf="loading">
     <div class="spinner spinner-bubble spinner-bubble-primary mr-3"></div>
@@ -503,8 +506,8 @@
 				<a ngbNavLink> Documentos  </a>
 				<ng-template ngbNavContent>
 					<div class="row">
-						<documents-component>
-							
+						<documents-component [doctype]="proyecto.doctype">
+
 						</documents-component>
 					</div>
 				</ng-template>

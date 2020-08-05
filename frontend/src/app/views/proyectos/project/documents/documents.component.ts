@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserRequirementService } from 'src/app/_services/userrequirements.service';
@@ -30,21 +30,19 @@ export class DocumentsComponent implements OnInit {
   anterior;
   actual;
 
-
+  @Input() doctype: any;
   constructor
   (
     private toastr: ToastrService
-  ) 
+  )
    {
-    
-    this.complete_document = true;
-    this.simple_document = false;
+
     //Creamos el array con todos los documentos
     this.type = "complete";
 
 
-    this.anterior = "1. Introduccion"; 
-    this.actual = "1. Introduccion"; 
+    this.anterior = "1. Introduccion";
+    this.actual = "1. Introduccion";
 
     this.documents_completo =
     [
@@ -97,7 +95,7 @@ export class DocumentsComponent implements OnInit {
     "   9.4   RS/CP",
     ];
 
-    this.documents_simplificado = 
+    this.documents_simplificado =
     [
       "1. Introduccion"
       ,
@@ -145,18 +143,18 @@ export class DocumentsComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param e Cambiamos la seccion del documento
    */
   changed(e)
   {
     this.anterior = this.actual;
     this.actual = e;
-    
-    console.log("Anterior: " + this.anterior + "----- " + "Actual :"+ e );
-    
 
-  } 
+    console.log("Anterior: " + this.anterior + "----- " + "Actual :"+ e );
+
+
+  }
 
 
 //**Guardamos el contenido del editor al hacer click */
@@ -176,6 +174,7 @@ public onReady( editor ) {
 }
 
 ngOnInit(): void {
+    if(this.doctype == 1){ this.simple_document=true;this.complete_document=false;}else{this.complete_document=true;this.simple_document=false;}
   const intervalo = interval(10000);
   intervalo.subscribe((n) =>
   {
@@ -186,7 +185,7 @@ ngOnInit(): void {
     this.toastr.success('Guardado Automatico', 'Guardando Documento', { timeOut: 3000, closeButton: true, progressBar: true });
 
   });
-  
+
 }
 
 public getEditor() {
