@@ -86,7 +86,7 @@ class UsersController extends Controller
         $user->email = $email;
         $user->name=$name;
         $user->surname = $surname;
-        $user->password = $password;
+        $user->password = bcrypt($password);
         $user->profile = $profile;
 
         $user->save();
